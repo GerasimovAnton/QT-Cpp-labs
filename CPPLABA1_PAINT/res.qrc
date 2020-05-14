@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/pic">
+        <file>img/circle.png</file>
+        <file>img/polygon.png</file>
+        <file>img/curve.png</file>
+        <file>img/closed_curve.png</file>
+        <file>img/Rect.png</file>
+    </qresource>
+</RCC>
