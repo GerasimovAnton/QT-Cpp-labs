@@ -51,12 +51,35 @@ void MainWindow::on_pushButton_2_clicked()
     int value = ui->lineEdit_4->text().toInt();
     int size  = ui->lineEdit_2->text().toInt();
 
+    if(size == 0) return;
+
     if(h == nullptr) {
         h = new HashTable<int,int>(size);
         keys = new int[size];
+
+        for(int i= 0;i < size;i++) keys[i] = 0;
+        h->add(0,0);
     }
+
     keys[capacity++] = key;
     h->add(key,value);
 
     drawTable(size);
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    List<int> *l = &h->keys();
+
+    int max = l->back();
+
+    for(int i : *l)
+    {
+        ui->lineEdit_5->setText(ui->lineEdit_5->text() +" "+ QString::number(i));
+
+//        if(i > max) max = i;
+    }
+
+    ui->lineEdit_5->setText("MAX KEY  = "+ QString::number(max));
+
 }

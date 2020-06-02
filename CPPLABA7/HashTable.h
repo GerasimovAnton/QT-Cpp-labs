@@ -37,7 +37,9 @@ public:
 
         for(int i = 0;i < size;i++)
         {
-            arr[i] = new List<Node*>();
+            List<Node *> *l =  new List<Node*>();
+            l->pushBack(new Node(0,0));
+            arr[i] = l;
         }
     }
     ~HashTable()
@@ -70,6 +72,28 @@ public:
         }
 
         //return 0;
+    }
+
+    List<t_key>& keys()
+    {
+        List<t_key> *l = new List<t_key>();
+
+        for(int i =0; i< size; i ++)
+        {
+            List<Node *> *t = arr[i];
+
+            for(Node *n: *t)
+            {
+             l->pushBack( n->key );
+            }
+        }
+
+        return *l;
+    }
+
+    void remove(t_key key)
+    {
+
     }
 };
 
