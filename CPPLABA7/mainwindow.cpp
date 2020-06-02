@@ -32,6 +32,9 @@ void MainWindow::drawTable(int size)
 void MainWindow::on_pushButton_clicked()
 {
     int size = ui->lineEdit_2->text().toInt();
+
+    if(size == 0) return;
+
     h = new HashTable<int,int>(size);
     keys = new int[size];
 
@@ -61,7 +64,7 @@ void MainWindow::on_pushButton_2_clicked()
         h->add(0,0);
     }
 
-    keys[capacity++] = key;
+    keys[(capacity++)%size] = key;
     h->add(key,value);
 
     drawTable(size);
@@ -69,6 +72,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    if(h == nullptr) return;
     List<int> *l = &h->keys();
 
     int max = l->back();
