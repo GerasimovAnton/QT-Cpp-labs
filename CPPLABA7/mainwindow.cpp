@@ -75,9 +75,7 @@ void MainWindow::on_pushButton_3_clicked()
 
     for(int i : *l)
     {
-        ui->lineEdit_5->setText(ui->lineEdit_5->text() +" "+ QString::number(i));
-
-//        if(i > max) max = i;
+       if(i > max) max = i;
     }
 
     ui->lineEdit_5->setText("MAX KEY  = "+ QString::number(max));
