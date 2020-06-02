@@ -17,8 +17,8 @@ private:
     class Node
     {
     public:
-        t_key key;
-        t_value value;
+        t_key key = 0;
+        t_value value = 0;
 
         Node(t_key k,t_value v)
         {

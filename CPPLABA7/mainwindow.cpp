@@ -14,13 +14,16 @@ MainWindow::~MainWindow()
 }
 
 HashTable<int,int> *h;
+int *keys;
+int capacity =0;
 
 void MainWindow::drawTable(int size)
 {
     if(h == nullptr) return;
 
+     ui->textEdit->clear();
     for (int i = 0;i < size;i ++) {
-        ui->textEdit->setText(ui->textEdit->toPlainText() +  "\nkey = " + QString::number(i) + " value = " + QString::number(h->get(i)));
+        ui->textEdit->setText(ui->textEdit->toPlainText() +  "\nkey = " + QString::number(keys[i]) + " value = " + QString::number(h->get(keys[i])));
     }
 
 }
@@ -30,12 +33,30 @@ void MainWindow::on_pushButton_clicked()
 {
     int size = ui->lineEdit_2->text().toInt();
     h = new HashTable<int,int>(size);
-
+    keys = new int[size];
 
 
     for (int i = 0;i < size;i ++) {
-        h->add(rand()%100,rand()%100);
+        int r = rand()%100;
+        h->add(r,rand()%100);
+        keys[i] = r;
     }
+
+    drawTable(size);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    int key = ui->lineEdit_3->text().toInt();
+    int value = ui->lineEdit_4->text().toInt();
+    int size  = ui->lineEdit_2->text().toInt();
+
+    if(h == nullptr) {
+        h = new HashTable<int,int>(size);
+        keys = new int[size];
+    }
+    keys[capacity++] = key;
+    h->add(key,value);
 
     drawTable(size);
 }
